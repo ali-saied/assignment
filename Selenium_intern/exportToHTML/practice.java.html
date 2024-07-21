@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>practice.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+practice.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">By</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">WebDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">WebElement</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">edge</span><span class="s2">.</span><span class="s1">EdgeDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">Assert</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+
+<span class="s0">public class </span><span class="s1">practice </span><span class="s2">{</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">InterruptedException </span><span class="s2">{</span>
+        <span class="s1">WebDriver driver </span><span class="s2">= </span><span class="s0">new </span><span class="s1">EdgeDriver</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.google.com&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">.</span><span class="s1">getTitle</span><span class="s2">());</span>
+
+        <span class="s1">WebElement searchTextBox </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s3">&quot;APjFqb&quot;</span><span class="s2">));</span>
+        <span class="s1">searchTextBox</span><span class="s2">.</span><span class="s1">sendKeys</span><span class="s2">(</span><span class="s3">&quot;vodafone egypt&quot;</span><span class="s2">);</span>
+
+
+        <span class="s1">Thread</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">3000</span><span class="s2">);</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">WebElement</span><span class="s2">&gt; </span><span class="s1">searchResults </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">findElements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">xpath</span><span class="s2">((</span><span class="s3">&quot;//Li//span&quot;</span><span class="s2">)));</span>
+
+        <span class="s0">int </span><span class="s1">len </span><span class="s2">= </span><span class="s1">searchResults</span><span class="s2">.</span><span class="s1">size</span><span class="s2">();</span>
+
+        <span class="s1">String expectedResult </span><span class="s2">= </span><span class="s3">&quot;vodafone egypt shop&quot;</span><span class="s2">;</span>
+
+        <span class="s0">boolean </span><span class="s1">srFlag </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+
+        <span class="s0">for</span><span class="s2">(</span><span class="s0">int </span><span class="s1">i</span><span class="s2">=</span><span class="s4">0</span><span class="s2">; </span><span class="s1">i</span><span class="s2">&lt;</span><span class="s1">len </span><span class="s2">; </span><span class="s1">i</span><span class="s2">++){</span>
+            <span class="s0">if</span><span class="s2">(</span><span class="s1">searchResults</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">).</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">expectedResult</span><span class="s2">)){</span>
+                <span class="s1">srFlag </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">searchResults</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">).</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">trim</span><span class="s2">()); </span><span class="s5">// trim removes the last and the begin spaces</span>
+
+                <span class="s0">break</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+        <span class="s2">}</span>
+        <span class="s5">// split removes each past of</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertTrue</span><span class="s2">(</span><span class="s1">srFlag</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

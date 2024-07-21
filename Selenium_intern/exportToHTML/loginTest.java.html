@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>loginTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+loginTest.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">WebDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">chrome</span><span class="s2">.</span><span class="s1">ChromeDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">Assert</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">loginTest </span><span class="s2">{</span>
+
+    <span class="s1">WebDriver dr </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ChromeDriver</span><span class="s2">();</span>
+    <span class="s0">final </span><span class="s1">String url </span><span class="s2">= </span><span class="s3">&quot;https://opensource-demo.orangehrmlive.com/web/index.php/auth/login&quot;</span><span class="s2">;</span>
+
+
+    <span class="s0">public void </span><span class="s1">test1</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">InterruptedException </span><span class="s2">{</span>
+        <span class="s1">loginScreen ls </span><span class="s2">= </span><span class="s0">new </span><span class="s1">loginScreen</span><span class="s2">(</span><span class="s1">dr</span><span class="s2">,</span><span class="s1">url</span><span class="s2">);</span>
+        <span class="s1">Thread</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">4000</span><span class="s2">);</span>
+        <span class="s1">ls</span><span class="s2">.</span><span class="s1">searchUsername</span><span class="s2">(</span><span class="s3">&quot;Admin&quot;</span><span class="s2">);</span>
+        <span class="s1">ls</span><span class="s2">.</span><span class="s1">searchPassword</span><span class="s2">(</span><span class="s3">&quot;admin123&quot;</span><span class="s2">);</span>
+        <span class="s1">Thread</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">4000</span><span class="s2">);</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">(</span><span class="s1">ls</span><span class="s2">.</span><span class="s1">driver</span><span class="s2">.</span><span class="s1">getTitle</span><span class="s2">(),</span><span class="s3">&quot;OrangeHRM&quot;</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;test1 done&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">test2</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">InterruptedException </span><span class="s2">{</span>
+        <span class="s1">loginScreen ls2 </span><span class="s2">= </span><span class="s0">new </span><span class="s1">loginScreen</span><span class="s2">(</span><span class="s1">dr</span><span class="s2">,</span><span class="s1">url</span><span class="s2">);</span>
+        <span class="s1">Thread</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">4000</span><span class="s2">);</span>
+        <span class="s1">ls2</span><span class="s2">.</span><span class="s1">searchUsername</span><span class="s2">(</span><span class="s3">&quot;Admin&quot;</span><span class="s2">);</span>
+        <span class="s1">ls2</span><span class="s2">.</span><span class="s1">searchPassword</span><span class="s2">(</span><span class="s3">&quot;admin1234&quot;</span><span class="s2">);</span>
+        <span class="s1">Thread</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s4">4000</span><span class="s2">);</span>
+        <span class="s1">String expectedErrorMessage </span><span class="s2">= </span><span class="s3">&quot;Invalid credentials&quot;</span><span class="s2">;</span>
+        <span class="s1">String actualErrorMessage </span><span class="s2">= </span><span class="s1">ls2</span><span class="s2">.</span><span class="s1">getErrorMessage</span><span class="s2">();</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">(</span><span class="s1">actualErrorMessage</span><span class="s2">, </span><span class="s1">expectedErrorMessage</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;test2 done&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">InterruptedException </span><span class="s2">{</span>
+        <span class="s1">loginTest t1 </span><span class="s2">= </span><span class="s0">new </span><span class="s1">loginTest</span><span class="s2">();</span>
+        <span class="s1">t1</span><span class="s2">.</span><span class="s1">test1</span><span class="s2">();</span>
+        <span class="s1">t1</span><span class="s2">.</span><span class="s1">test2</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
